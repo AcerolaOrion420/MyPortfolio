@@ -3,222 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omkar Ramesh Reddy - Portfolio</title>
+    <title>Omkar Ramesh Reddy | Backend Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --primary-color: #38bdf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #10b981;
+            --bg-base: #09090b;
+            --bg-surface: rgba(255, 255, 255, 0.03);
+            --bg-surface-hover: rgba(255, 255, 255, 0.06);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-primary: #f8fafc;
+            --text-secondary: #a1a1aa;
+            --accent-gradient: linear-gradient(135deg, #38bdf8, #818cf8);
+            --accent-solid: #38bdf8;
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: var(--accent);
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.04), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.04), transparent 25%);
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Header Section */
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation / Header */
         header {
-            padding: 80px 0 50px;
-            border-bottom: 1px solid var(--surface-color);
-            text-align: center;
+            padding: 100px 0 60px;
+            position: relative;
         }
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            color: var(--text-main);
+        .hero-name {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
         }
 
-        .subtitle {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
+        .hero-title {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
         }
 
-        .contact-info {
+        .hero-summary {
+            max-width: 700px;
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .contact-links {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
             gap: 20px;
-            color: var(--text-muted);
-            margin-bottom: 30px;
+            flex-wrap: wrap;
         }
 
-        .profile-summary {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            color: var(--text-muted);
+        .contact-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-pill:hover {
+            background: var(--bg-surface-hover);
+            border-color: var(--accent-solid);
+            transform: translateY(-2px);
         }
 
         /* Sections */
         section {
-            padding: 60px 0;
-            border-bottom: 1px solid var(--surface-color);
+            padding: 80px 0;
+            position: relative;
         }
 
-        section h2 {
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+        }
+
+        .section-title {
             font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--text-main);
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 16px;
         }
 
-        section h2::after {
-            content: "";
-            height: 2px;
-            flex: 1;
-            background-color: var(--surface-color);
+        .section-title span {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--accent-solid);
+            font-weight: 400;
         }
 
-        /* Skills */
-        .skills-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .skill-category h3 {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background-color: var(--surface-color);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(56, 189, 248, 0.2);
-        }
-
-        /* Cards (Projects, Experience, Education) */
+        /* Cards Layout */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
         }
 
         .card {
-            background-color: var(--surface-color);
-            padding: 25px;
-            border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            border-left: 3px solid var(--primary-color);
+            transform: translateY(-8px);
+            background: var(--bg-surface-hover);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-header {
+            margin-bottom: 20px;
         }
 
         .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .card .meta {
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .card p, .card ul {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .card ul {
-            padding-left: 20px;
-            margin-top: 10px;
-        }
-
-        .card li {
+            font-size: 1.4rem;
             margin-bottom: 8px;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            color: var(--text-muted);
+        .card .meta {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-solid);
+        }
+
+        .card ul {
+            list-style: none;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .card li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-solid);
+        }
+
+        /* Skills specific */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-group h3 {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-solid);
+            padding: 6px 14px;
+            border-radius: 8px;
             font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
         /* Animations */
-        .fade-in {
+        .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
 
-        .fade-in.visible {
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 60px 0 40px; }
+            .hero-name { font-size: 2.5rem; }
+            section { padding: 60px 0; }
+        }
     </style>
 </head>
 <body>
 
-    <header class="fade-in">
-        <div class="container">
-            <h1>Omkar Ramesh Reddy[cite: 1]</h1>
-            <div class="subtitle">Backend Developer[cite: 1]</div>
-            <div class="contact-info">
-                <span>📧 omkar.reddy02@gmail.com[cite: 1]</span>
-                <span>📞 +918618348660[cite: 1]</span>
-                <span>📍 Bangalore[cite: 1] | DOB: 02/10/2001[cite: 1]</span>
-                <span>🔗 LinkedIn[cite: 1] | GitHub[cite: 1]</span>
-            </div>
-            <p class="profile-summary">
-                MCA student with a passion for hardware solutions, from Linux server deployment to Raspberry Pi projects.[cite: 1] I thrive on hands-on technical challenges and approach problemsolving with enthusiasm and persistence.[cite: 1] A fast learner who collaborates effectively with teams to develop optimal solutions.[cite: 1] Seeking to leverage my technical aptitude and collaborative mindset in a software development role where hardware and software integration is valued.[cite: 1]
-            </p>
+    <header class="container reveal">
+        <h1 class="hero-name">Omkar Ramesh Reddy[cite: 1]</h1>
+        <div class="hero-title">Backend Developer[cite: 1]</div>
+        <p class="hero-summary">
+            MCA student with a passion for hardware solutions, from Linux server deployment to Raspberry Pi projects.[cite: 1] I thrive on hands-on technical challenges and approach problemsolving with enthusiasm and persistence.[cite: 1] A fast learner who collaborates effectively with teams to develop optimal solutions.[cite: 1] Seeking to leverage my technical aptitude and collaborative mindset in a software development role where hardware and software integration is valued.[cite: 1]
+        </p>
+        <div class="contact-links">
+            <a href="mailto:omkar.reddy02@gmail.com" class="contact-pill">✉️ omkar.reddy02@gmail.com[cite: 1]</a>
+            <span class="contact-pill">📱 +918618348660[cite: 1]</span>
+            <span class="contact-pill">📍 Bangalore, IN[cite: 1]</span>
+            <a href="#" class="contact-pill">🔗 LinkedIn[cite: 1]</a>
+            <a href="#" class="contact-pill">💻 GitHub[cite: 1]</a>
         </div>
     </header>
 
     <main class="container">
         
-        <section id="experience" class="fade-in">
-            <h2>Professional Experience</h2>
+        <section class="reveal">
+            <h2 class="section-title"><span>01.</span> Professional Experience</h2>
             <div class="card">
-                <h3>Backend Intern[cite: 1]</h3>
-                <div class="meta">Kristu Jayanti SDC[cite: 1] | 2024[cite: 1]</div>
+                <div class="card-header">
+                    <h3>Backend Intern[cite: 1]</h3>
+                    <div class="meta">Kristu Jayanti SDC[cite: 1] // 2024[cite: 1]</div>
+                </div>
                 <ul>
                     <li>Developed and maintained RESTful APIs using Java Vert.x for the college website backend.[cite: 1]</li>
                     <li>Integrated MongoDB and Redis to ensure scalable, low-latency data handling.[cite: 1]</li>
@@ -228,21 +299,14 @@
             </div>
         </section>
 
-        <section id="projects" class="fade-in">
-            <h2>Projects</h2>
+        <section class="reveal">
+            <h2 class="section-title"><span>02.</span> Projects</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>EcoTexts[cite: 1]</h3>
-                    <div class="meta">Google Solutions Challenge[cite: 1] | Node.JS / HTML / Firebase[cite: 1] | 2024[cite: 1]</div>
-                    <ul>
-                        <li>Developed a Node.js/Firebase platform to facilitate peer-to-peer textbook exchanges, promoting the sustainable reuse of academic resources.[cite: 1]</li>
-                        <li>Streamlined the borrowing process for students by centralizing textbook availability in a single web interface.[cite: 1]</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>RFID-Based Library Automation System[cite: 1]</h3>
-                    <div class="meta">Kristu Jayanti College[cite: 1] | 2024[cite: 1]</div>
+                    <div class="card-header">
+                        <h3>RFID-Based Library Automation System[cite: 1]</h3>
+                        <div class="meta">Kristu Jayanti College[cite: 1] // 2024[cite: 1]</div>
+                    </div>
                     <ul>
                         <li>Engineered a Java Vert.x backend integrated with college ERP systems to automate book checkouts and returns using RFID technology.[cite: 1]</li>
                         <li>Implemented Redis caching for session management, achieving real-time transaction updates and reducing data retrieval latency.[cite: 1]</li>
@@ -251,86 +315,89 @@
                 </div>
 
                 <div class="card">
-                    <h3>MovieBuddy[cite: 1]</h3>
-                    <div class="meta">Personal Project[cite: 1] | AI-Powered Android Movie Recommendation App[cite: 1]</div>
+                    <div class="card-header">
+                        <h3>MovieBuddy[cite: 1]</h3>
+                        <div class="meta">Personal Project[cite: 1] // AI-Powered Android App[cite: 1]</div>
+                    </div>
                     <ul>
                         <li>Built a Kotlin-based Android application utilizing Google's Gemini API to deliver personalized movie recommendations based on user history.[cite: 1]</li>
                         <li>Integrated the TMDb API to fetch and display real-time metadata for a catalog of thousands of titles.[cite: 1]</li>
                         <li>Deployed a Room Database to ensure 100% offline access to user watchlists and persistent activity data.[cite: 1]</li>
                     </ul>
                 </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>EcoTexts[cite: 1]</h3>
+                        <div class="meta">Google Solutions Challenge[cite: 1] // 2024[cite: 1]</div>
+                    </div>
+                    <ul>
+                        <li>Developed a Node.js/Firebase platform to facilitate peer-to-peer textbook exchanges, promoting the sustainable reuse of academic resources.[cite: 1]</li>
+                        <li>Streamlined the borrowing process for students by centralizing textbook availability in a single web interface.[cite: 1]</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <section id="skills" class="fade-in">
-            <h2>Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skill-category">
+        <section class="reveal">
+            <h2 class="section-title"><span>03.</span> Technical Arsenal</h2>
+            <div class="card skills-grid">
+                <div class="skill-group">
                     <h3>Languages[cite: 1]</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python[cite: 1]</span>
-                        <span class="skill-tag">C[cite: 1]</span>
-                        <span class="skill-tag">Java[cite: 1]</span>
+                    <div class="tags">
+                        <span class="tag">Python[cite: 1]</span>
+                        <span class="tag">C[cite: 1]</span>
+                        <span class="tag">Java[cite: 1]</span>
                     </div>
                 </div>
-                <div class="skill-category">
+                <div class="skill-group">
                     <h3>Databases[cite: 1]</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MongoDB[cite: 1]</span>
-                        <span class="skill-tag">SQL[cite: 1]</span>
+                    <div class="tags">
+                        <span class="tag">MongoDB[cite: 1]</span>
+                        <span class="tag">SQL[cite: 1]</span>
                     </div>
                 </div>
-                <div class="skill-category">
+                <div class="skill-group">
                     <h3>Frameworks[cite: 1]</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Flask[cite: 1]</span>
-                        <span class="skill-tag">Vert-X[cite: 1]</span>
-                        <span class="skill-tag">Node.js[cite: 1]</span>
+                    <div class="tags">
+                        <span class="tag">Flask[cite: 1]</span>
+                        <span class="tag">Vert-X[cite: 1]</span>
+                        <span class="tag">Node.js[cite: 1]</span>
                     </div>
                 </div>
-                <div class="skill-category">
+                <div class="skill-group">
                     <h3>Tools[cite: 1]</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">GIT[cite: 1]</span>
-                        <span class="skill-tag">VS Code[cite: 1]</span>
+                    <div class="tags">
+                        <span class="tag">GIT[cite: 1]</span>
+                        <span class="tag">VS Code[cite: 1]</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="education" class="fade-in">
-            <h2>Education & Courses</h2>
+        <section class="reveal">
+            <h2 class="section-title"><span>04.</span> Education & Certifications</h2>
             <div class="grid">
-                <!-- Education -->
                 <div class="card">
-                    <h3>Masters in Computer Applications[cite: 1]</h3>
-                    <div class="meta">BMSIT & M[cite: 1] | Present[cite: 1] | Bengaluru[cite: 1]</div>
+                    <div class="card-header">
+                        <h3 class="gradient-text">Academic Journey</h3>
+                    </div>
+                    <ul>
+                        <li><strong>MCA (Present)</strong> - BMSIT & M, Bengaluru[cite: 1]</li>
+                        <li><strong>BCA (3.0)</strong> - Kristu Jayanti College (2025)[cite: 1]</li>
+                        <li><strong>HSC (70%)</strong> - CMR National Public School (2020)[cite: 1]</li>
+                        <li><strong>SSLC (72%)</strong> - Bishop Cotton Boys' School (2018)[cite: 1]</li>
+                    </ul>
                 </div>
                 <div class="card">
-                    <h3>BCA - 3.0[cite: 1]</h3>
-                    <div class="meta">Kristu Jayanti college[cite: 1] | 2025[cite: 1] | Bengaluru[cite: 1]</div>
-                </div>
-                <div class="card">
-                    <h3>Higher Secondary Certificate - 70%[cite: 1]</h3>
-                    <div class="meta">CMR National Public School[cite: 1] | 2020[cite: 1] | Bengaluru[cite: 1]</div>
-                </div>
-                <div class="card">
-                    <h3>SSLC - 72%[cite: 1]</h3>
-                    <div class="meta">Bishop Cotton Boys' School[cite: 1] | 2018[cite: 1] | Bengaluru[cite: 1]</div>
-                </div>
-                
-                <!-- Courses -->
-                <div class="card">
-                    <h3>100 Days of Code: Python Pro Bootcamp[cite: 1]</h3>
-                    <div class="meta">Udemy[cite: 1] | 2024[cite: 1]</div>
-                </div>
-                <div class="card">
-                    <h3>Data Base Management System[cite: 1]</h3>
-                    <div class="meta">NPTEL[cite: 1] | 2024[cite: 1]</div>
-                </div>
-                <div class="card">
-                    <h3>The Joy of Computing using Python[cite: 1]</h3>
-                    <div class="meta">NPTEL[cite: 1] | 2024[cite: 1]</div>
+                    <div class="card-header">
+                        <h3 class="gradient-text">Coursework</h3>
+                    </div>
+                    <ul>
+                        <li>100 Days of Code: Python Pro Bootcamp (Udemy)[cite: 1]</li>
+                        <li>Data Base Management System (NPTEL)[cite: 1]</li>
+                        <li>The Joy of Computing using Python (NPTEL)[cite: 1]</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -339,31 +406,26 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Omkar Ramesh Reddy. All rights reserved.</p>
+            <p>Designed & Built by Omkar Ramesh Reddy</p>
         </div>
     </footer>
 
     <script>
-        // Intersection Observer for scroll animations
-        document.addEventListener("DOMContentLoaded", () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(el => observer.observe(el));
-        });
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
     </script>
 </body>
 </html>
